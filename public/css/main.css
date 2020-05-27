@@ -1,0 +1,40 @@
+body {
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+}
+
+footer ul li a img {
+    height: 2rem;
+}
+
+.rupee::before {
+    content: '₹';
+}
+
+.mob-scroll{
+    -webkit-overflow-scrolling: auto;
+    overflow-y: scroll;
+}
+
+.h-100 {
+    height: 24rem;
+}
+
+/* Custom Modal */
+/* .modal {
+    transition: opacity 0.25s ease;
+    }
+    body.modal-active {
+    overflow-x: hidden;
+    overflow-y: visible !important;
+    }
+    .opacity-95 {opacity: .97;} */
+
+    .modal {
+        transition: opacity 0.25s ease;
+      }
+      body.modal-active {
+        overflow-x: hidden;
+        overflow-y: visible !important;
+      }

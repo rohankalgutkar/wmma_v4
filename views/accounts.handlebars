@@ -1,0 +1,42 @@
+<img src="img/bg-header/accounts.png" alt="">
+<main class="max-w-md flex-grow p-2">
+  <div class="rounded overflow-hidden shadow-lg p-2">
+    <div class="flex justify-between mb-4">
+      <div>
+        <h1 class="text-xl font-bold font-mono mb-2 mr-2 inline">ACCOUNTS</h1>
+        <p class="text-sm text-teal-900 font-bold rupee inline">{{accountTotal}}</p>
+      </div>
+      <!-- <a onclick="alert('Yo')"><img src="img/add.png" class="h-6"></a> -->
+      <button id="add-account"><img src="img/add.png" class="h-6"></button>
+    </div>
+
+    <div class="overflow-scroll pt-2 h-100">
+      {{#each accounts}}
+      <div class="acc-list-item">
+        <div class="acc-icon">💧</div>
+        <div class="flex-1 pl-1 mr-16">
+          <div class="font-medium">{{accountName}}</div>
+          <div class="text-gray-700 text-sm">{{accountType}}</div>
+          <div class="text-gray-500 text-xs">{{statsInfo}}</div>
+        </div>
+        <div class="{{accountTypeClass}} text-lg rupee">{{currentBal}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+
+</main>
+
+
+<!--Modal-->
+<div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+  <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50">
+    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+    
+
+    </div>
+
+  </div>
+
+</div>

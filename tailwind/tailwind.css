@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dash-block {
+    @apply select-none cursor-pointer rounded-md flex flex-1 items-center p-2  transition duration-500 ease-in-out transform m-1
+}
+
+.dash-block:hover {
+    @apply -translate-y-1 shadow-lg
+}
+
+.acc-list-item {
+    @apply select-none cursor-pointer bg-gray-200 rounded-lg flex flex-1 items-center p-3  transition duration-500 ease-in-out transform mb-2
+}
+.acc-list-item:hover {
+    @apply -translate-y-1 shadow-lg
+}
+.acc-icon {
+    @apply flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4
+}
+
+
+/* Toggle switch */
+.toggle-checkbox:checked {
+    @apply: right-0 border-green-400;
+    right: 0;
+    border-color: #68D391;
+  }
+  .toggle-checkbox:checked + .toggle-label {
+    @apply: bg-green-400;
+    background-color: #68D391;
+  }
