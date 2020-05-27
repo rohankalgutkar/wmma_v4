@@ -1,11 +1,51 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser')
 
 const app = express();
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
+
+let accData = {
+    title: 'Accounts | WMMA',
+    accountTotal: '19,500',
+    accounts: [{
+        accountName: 'ICICI',
+        accountType: 'Savings',
+        statsInfo: 'Included in Stats',
+        currentBal: '11,352',
+        accountTypeClass: 'text-green-800'
+    }, {
+        accountName: 'HDFC',
+        accountType: 'Savings',
+        statsInfo: 'Included in Stats',
+        currentBal: '4500',
+        accountTypeClass: 'text-green-800'
+    }, {
+        accountName: 'Wallet',
+        accountType: 'Savings',
+        statsInfo: 'Included in Stats',
+        currentBal: '4500',
+        accountTypeClass: 'text-green-800'
+    }, {
+        accountName: 'Amazon Pay',
+        accountType: 'Savings',
+        statsInfo: 'Included in Stats',
+        currentBal: '600',
+        accountTypeClass: 'text-green-800'
+    }, {
+        accountName: 'DBS',
+        accountType: 'Savings',
+        statsInfo: 'Excluded from Stats',
+        currentBal: '13,290',
+        accountTypeClass: 'text-yellow-700'
+    }]
+}
 
 // May cause prob in production. Check this out then.
 // app.enable('view cache');
@@ -36,41 +76,7 @@ app.get('/add-transaction', function (req, res) {
     });
 });
 app.get('/accounts', function (req, res) {
-    res.render('accounts', {
-        title: 'Accounts | WMMA',
-        accountTotal: '19,500',
-        accounts: [{
-            accountName: 'ICICI',
-            accountType: 'Savings',
-            statsInfo: 'Included in Stats',
-            currentBal: '11,352',
-            accountTypeClass: 'text-green-800'
-        }, {
-            accountName: 'HDFC',
-            accountType: 'Savings',
-            statsInfo: 'Included in Stats',
-            currentBal: '4500',
-            accountTypeClass: 'text-green-800'
-        }, {
-            accountName: 'Wallet',
-            accountType: 'Savings',
-            statsInfo: 'Included in Stats',
-            currentBal: '4500',
-            accountTypeClass: 'text-green-800'
-        }, {
-            accountName: 'Amazon Pay',
-            accountType: 'Savings',
-            statsInfo: 'Included in Stats',
-            currentBal: '600',
-            accountTypeClass: 'text-green-800'
-        }, {
-            accountName: 'DBS',
-            accountType: 'Savings',
-            statsInfo: 'Excluded from Stats',
-            currentBal: '13,290',
-            accountTypeClass: 'text-yellow-700'
-        }]
-    });
+    res.render('accounts', accData);
 });
 app.get('/credit-cards', function (req, res) {
     res.render('credit', {
@@ -97,5 +103,14 @@ app.get('/user', function (req, res) {
         title: 'User | WMMA'
     });
 });
+
+
+// Post Routes
+
+app.post('/addAccount', (req, res) => {
+    console.log(req.body)
+    accData.accountAddedFlag = true
+    res.render('accounts', accData)
+})
 
 app.listen(3000);
