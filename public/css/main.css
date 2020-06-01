@@ -12,7 +12,7 @@ footer ul li a img {
     content: '₹';
 }
 
-.mob-scroll{
+.mob-scroll {
     -webkit-overflow-scrolling: auto;
     overflow-y: scroll;
 }
@@ -22,10 +22,11 @@ footer ul li a img {
 }
 
 /* Custom Modal */
-    .modal {
-        transition: opacity 0.25s ease;
-      }
-      body.modal-active {
-        overflow-x: hidden;
-        overflow-y: visible !important;
-      }
+.modal {
+    transition: opacity 0.25s ease;
+}
+
+body.modal-active {
+    overflow-x: hidden;
+    overflow-y: visible !important;
+}

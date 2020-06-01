@@ -1,0 +1,115 @@
+{{!-- <a class="border z-50 p-2 ml-2 mt-2" href="/signup">Refresh</a> --}}
+
+<img src="img/login.png">
+<main class="max-w-md flex-grow p-2">
+
+    <form class="rounded overflow-hidden shadow-lg p-4 mb-6 pb-6" action="/signup" method="POST" id="signUpForm">
+        <div class="flex justify-between py-1">
+            <h1 class="block self-center text-xl font-bold font-mono">SIGN UP</h1>
+            <p class="block self-center">
+                <span class="text-xs">Or.. </span><a href="/login" class="text-blue-500"> Login</a>
+            </p>
+        </div>
+        
+        {{!-- bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 --}}
+        <div class="my-3">
+            <label class="block text-gray-700 text-sm font-bold mb-3" for="name">
+                Name
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="ipNameField" type="text" placeholder="name" autocomplete="off" inputmode="text"
+                oninput="signUpToggleSubmit()" name='name'>
+        </div>
+        <div class="my-3">
+            <label class="block text-gray-700 text-sm font-bold mb-3" for="username">
+                Username
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="ipUsernameField" type="text" placeholder="username" autocomplete="off" inputmode="text"
+                oninput="signUpToggleSubmit()" name='username'>
+        </div>
+        <div class="my-3">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                Password
+            </label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                oninput="signUpToggleSubmit()" id="ipPassField" type="password" placeholder="*********" name='password'>
+            {{!-- <p class="text-red-500 text-xs italic">Please choose a password.</p>    --}}
+        </div>
+
+        <div class="mt-4 pt-3 mb-4 flex flex-row-reverse">
+            {{!-- <button class="modal-close"><img src="img/close.png" class="h-8 origin-center transform rotate-45"></button> --}}
+
+            <button id="signUpBtn" disabled class="mr-4 rounded text-gray-100 px-4 py-2 bg-blue-500 opacity-50"
+                type="submit">
+                Signup
+            </button>
+
+            <div class="hidden text-xs mr-24 flex flex-row" id="signUpValidation">
+                <img src="img/error.png" class="h-6 mr-2 self-center">
+                <p class="flex-1 inline text-semi-bold text-red-600 self-center">
+                    Please fill all details correctly!
+                </p>
+            </div>
+
+            {{#if userNameTaken}}
+            <div class="text-xs mr-24 flex flex-row" id="signUpValidation">
+                <img src="img/error.png" class="h-6 mr-2 self-center">
+                <p class="flex-1 inline text-semi-bold text-red-600 self-center">
+                    Username taken. Please try again.
+                </p>
+            </div>
+            {{/if}}
+
+        </div>
+
+    </form>
+
+    <p class="text-center text-gray-500 text-xs">
+        &copy; 2020 WMMA. Created by daft_ro.
+    </p>
+</main>
+
+<script defer>
+    console.log('script load che')
+    // Register page form validation
+
+    const ipNameField = document.getElementById('ipNameField')
+    const ipUsernameField = document.getElementById('ipUsernameField')
+    const ipPassField = document.getElementById('ipPassField')
+
+    function signUpToggleSubmit() {
+        const signUpBtn = document.getElementById('signUpBtn')
+        if (ipNameField.value && ipUsernameField.value && ipPassField.value) {
+            signUpBtn.disabled = false;
+            signUpBtn.classList.remove('opacity-50')
+        } else if (!signUpBtn.disabled) {
+            signUpBtn.disabled = true;
+            signUpBtn.classList.add('opacity-50')
+        }
+    }
+
+    const signUpForm = document.getElementById('signUpForm')
+    if (signUpForm) {
+        signUpForm.addEventListener('submit', (ev) => {
+            ev.preventDefault();
+
+
+            const signUpValidation = document.getElementById('signUpValidation');
+            if (ipPassField.value.length < 5 || ipUsernameField.value.length < 3) {
+                signUpValidation.classList.remove('hidden')
+                setTimeout(() => {
+                    signUpValidation.classList.add('hidden')
+                }, 3000)
+                return false
+            }
+
+            if (!document.getElementById('signUpBtn').disabled) {
+                signUpForm.submit()
+            }
+        })
+    }
+</script>
